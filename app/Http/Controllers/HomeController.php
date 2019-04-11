@@ -38,6 +38,8 @@ class HomeController extends Controller
         $sms = new SMS($phone_number, $message, $short_code);
 
         $sms->send();
+
+        return redirect()->back()->with("success", "Service Activation Message Successfully Sent!");
     }
 
     public function retrieveSMS()
@@ -47,5 +49,12 @@ class HomeController extends Controller
         $sms = new SMS('', '', '');
 
         $sms->retrieveSMSAndSaveToDatabase();
+    }
+
+    public function testCallBackApi()
+    {
+        Log::info("Call back method hit. Post data: ". print_r($_POST, true));
+
+//        dd($_POST, 'data from api');
     }
 }

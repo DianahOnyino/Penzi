@@ -38,12 +38,11 @@ class SMS
     public function send()
     {
         try {
-            $result = $this->sms->send([
+            $this->sms->send([
                 'to' => $this->recipients,
                 'message' => $this->message,
                 'from' => $this->short_code
-                                       ]);
-            print_r($result);
+                             ]);
         } catch (\Exception $e) {
             echo "Error: " . $e->getMessage();
         }
@@ -58,7 +57,7 @@ class SMS
             do {
                 $messages = $this->sms->fetchMessages(['lastReceivedId' => $lastReceivedId]);
 
-                foreach($messages['data']->SMSMessageData->Messages as $message) {
+                foreach ($messages['data']->SMSMessageData->Messages as $message) {
                     $existing_request_message = RequestMessage::where('text_id', $message->id)->first();
 
                     if (!$existing_request_message) {
@@ -71,11 +70,11 @@ class SMS
                         $lastReceivedId = $message->id;
                     }
                 }
-            } while(count($messages) > 0);
+            } while (count($messages) > 0);
 
             // NOTE: Be sure to save the lastReceivedId for next time
         } catch (\Exception $e) {
-            echo "Error: ".$e->getMessage();
+            echo "Error: " . $e->getMessage();
         }
     }
 
@@ -103,7 +102,7 @@ class SMS
 //            TODO: Check
         }
 
-        $sms = new SMS('+254701618000','Hellow! We made it again and again!','50010');
+        $sms = new SMS('+254701618000', 'Hellow! We made it again and again!', '50010');
 
         $sms->send();
 

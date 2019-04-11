@@ -22,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sms/send', 'HomeController@sendSMS')->name('sms-send');
 
 Route::get('/incoming', 'HomeController@retrieveSMS')->name('incoming-retrieve');
+
+
+//Test callback api
+//Route::post('/inbox-messages/retrieve', 'HomeController@testCallBackApi')->name('inbox-retrieve');
