@@ -21,6 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/sms/send', 'HomeController@sendSMS')->name('sms-send');
 
-//Route::get('/inbox-messages/retrieve', 'HomeController@retrieveSMS')->name('inbox-retrieve');
-
 Route::get('/incoming', 'HomeController@retrieveSMS')->name('incoming-retrieve');

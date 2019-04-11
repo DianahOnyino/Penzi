@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AfricasTalkingSMS\SMS;
+use App\MessageResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -30,8 +31,11 @@ class HomeController extends Controller
 
     public function sendSMS()
     {
-        $message = "";
-        $sms = new SMS('+254701618000','Hellow! We made it again and again!','50010');
+        $phone_number = '+254701618000';
+        $short_code = env('SHORT_CODE');
+        $message = MessageResponse::where('slug', 'activation')->first()->response;
+
+        $sms = new SMS($phone_number, $message, $short_code);
 
         $sms->send();
     }
